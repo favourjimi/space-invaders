@@ -600,7 +600,15 @@
       // ignore
     }
     // Show pause dialog as "Restart"
-    if (!pauseDialog?.open) pauseDialog?.showModal();
+    //if (!pauseDialog?.open) pauseDialog?.showModal();
+    const pauseTitle = document.getElementById('pauseTitle');
+if (pauseTitle) pauseTitle.innerHTML = '<i class="fa-solid fa-skull" aria-hidden="true"></i> Game Over';
+const pauseText = pauseDialog?.querySelector('p');
+if (pauseText) pauseText.textContent = `Final Score: ${state.score}`;
+// Hide resume button
+const resumeBtn = pauseDialog?.querySelector('[value="resume"]');
+if (resumeBtn) resumeBtn.style.display = 'none';
+if (!pauseDialog?.open) pauseDialog?.showModal();
   }
 
   function renderScores(list) {

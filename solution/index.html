@@ -333,7 +333,7 @@ footer {
   </style>
 <body>
 
-  <a href="#play" aria-label="Skip to game">Skip to Game</a>
+  <a href="#game-select" aria-label="Skip to game">Skip to Game</a>
 
   <header>
     <h1 aria-label="Space Game">
@@ -364,6 +364,73 @@ footer {
   </header>
 
   <main id="main" tabindex="-1">
+
+    <!-- Game Selection -->
+<section id="game-select" aria-label="Game Selection" style="
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  padding: 2rem;
+  margin-bottom: 1rem;
+  background: rgba(12, 17, 38, 0.75);
+  border: 1px solid #192243;
+  border-radius: 14px;
+">
+  <h2 style="font-family: 'Orbitron', sans-serif; margin: 0; color: #5ac8fa;">
+    🚀 Choose Your Game
+  </h2>
+  <p style="color: #9aa4bf; margin: 0;">
+    Select which version of the game you want to play
+  </p>
+  <div style="display: flex; gap: 1.5rem; flex-wrap: wrap; justify-content: center;">
+    <a href="../6-end-condition/your-work/index.html" style="
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 1.5rem 2rem;
+      background: linear-gradient(180deg, #10314a 0%, #0d2438 100%);
+      border: 1px solid #192243;
+      border-radius: 12px;
+      color: #e6eaf2;
+      text-decoration: none;
+      transition: border-color 0.2s;
+    " onmouseover="this.style.borderColor='#5ac8fa'"
+       onmouseout="this.style.borderColor='#192243'">
+      <span style="font-size: 2rem;">🎮</span>
+      <span style="font-family: 'Orbitron', sans-serif; font-weight: 700;">
+        My Game
+      </span>
+      <span style="color: #9aa4bf; font-size: 0.85rem;">
+        Built through Lessons 1–6
+      </span>
+    </a>
+
+    <a href="#play" style="
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 1.5rem 2rem;
+      background: linear-gradient(180deg, #1a1440 0%, #13103a 100%);
+      border: 1px solid #192243;
+      border-radius: 12px;
+      color: #e6eaf2;
+      text-decoration: none;
+      transition: border-color 0.2s;
+    " onmouseover="this.style.borderColor='#a78bfa'"
+       onmouseout="this.style.borderColor='#192243'">
+      <span style="font-size: 2rem;">⭐</span>
+      <span style="font-family: 'Orbitron', sans-serif; font-weight: 700;">
+        Advanced Game
+      </span>
+      <span style="color: #9aa4bf; font-size: 0.85rem;">
+        Full featured solution
+      </span>
+    </a>
+  </div>
+</section>
 
     <!-- HUD -->
     <section id="hud" aria-label="Game HUD">
