@@ -1,4 +1,4 @@
-# Build a Space Game
+# Built a Space Game
 
 A space game to teach more advanced JavaScript fundamentals
 
