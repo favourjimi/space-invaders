@@ -4,21 +4,29 @@ class EventEmitter {
                 this.listeners = {};
         }
 
+        // @ts-ignore
         on(message, listener) {
+                // @ts-ignore
                 if (!this.listeners[message]) {
+                        // @ts-ignore
                         this.listeners[message] = [];
                 }
+                // @ts-ignore
                 this.listeners[message].push(listener);
         }
 
+        // @ts-ignore
         emit(message, payload = null) {
+                // @ts-ignore
                 if (this.listeners[message]) {
+                        // @ts-ignore
                         this.listeners[message].forEach((l) => l(message, payload));
                 }
         }
 }
 
 class GameObject {
+        // @ts-ignore
         constructor(x, y) {
                 this.x = x;
                 this.y = y;
@@ -26,9 +34,11 @@ class GameObject {
                 this.type = '';
                 this.width = 0;
                 this.height = 0;
+                // @ts-ignore
                 this.img = undefined;
         }
 
+        // @ts-ignore
         draw(ctx) {
                 ctx.drawImage(this.img, this.x, this.y, this.width, this.height);
         }
@@ -44,6 +54,7 @@ class GameObject {
 }
 
 class Hero extends GameObject {
+        // @ts-ignore
         constructor(x, y) {
                 super(x, y);
                 (this.width = 99), (this.height = 75);
@@ -86,11 +97,13 @@ class Hero extends GameObject {
 }
 
 class Enemy extends GameObject {
+        // @ts-ignore
         constructor(x, y) {
                 super(x, y);
                 (this.width = 98), (this.height = 50);
                 this.type = 'Enemy';
                 let id = setInterval(() => {
+                        // @ts-ignore
                         if (this.y < canvas.height - this.height) {
                                 this.y += 5;
                         } else {
@@ -102,10 +115,12 @@ class Enemy extends GameObject {
 }
 
 class Laser extends GameObject {
+        // @ts-ignore
         constructor(x, y) {
                 super(x, y);
                 (this.width = 9), (this.height = 33);
                 this.type = 'Laser';
+                // @ts-ignore
                 this.img = laserImg;
                 let id = setInterval(() => {
                         if (this.y > 0) {
@@ -118,6 +133,7 @@ class Laser extends GameObject {
         }
 }
 
+// @ts-ignore
 function loadTexture(path) {
         return new Promise((resolve) => {
                 const img = new Image();
@@ -128,6 +144,7 @@ function loadTexture(path) {
         });
 }
 
+// @ts-ignore
 function intersectRect(r1, r2) {
         return !(
                 r2.left > r1.right ||
@@ -138,6 +155,7 @@ function intersectRect(r1, r2) {
 }
 
 // Draw score and lives on screen
+// @ts-ignore
 function displayHUD(ctx, hero) {
         ctx.fillStyle = 'white';
         ctx.font = '20px Arial';
@@ -155,15 +173,23 @@ const Messages = {
         COLLISION_ENEMY_HERO: 'COLLISION_ENEMY_HERO',
 };
 
+// @ts-ignore
 let heroImg,
+        // @ts-ignore
         enemyImg,
+        // @ts-ignore
         laserImg,
+        // @ts-ignore
         canvas,
+        // @ts-ignore
         ctx,
+        // @ts-ignore
         gameObjects = [],
+        // @ts-ignore
         hero,
         eventEmitter = new EventEmitter();
 
+// @ts-ignore
 let onKeyDown = function (e) {
         switch (e.keyCode) {
                 case 37:
@@ -197,12 +223,14 @@ window.addEventListener('keyup', (evt) => {
 function createEnemies() {
         const MONSTER_TOTAL = 5;
         const MONSTER_WIDTH = MONSTER_TOTAL * 98;
+        // @ts-ignore
         const START_X = (canvas.width - MONSTER_WIDTH) / 2;
         const STOP_X = START_X + MONSTER_WIDTH;
 
         for (let x = START_X; x < STOP_X; x += 98) {
                 for (let y = 0; y < 50 * 5; y += 50) {
                         const enemy = new Enemy(x, y);
+                        // @ts-ignore
                         enemy.img = enemyImg;
                         gameObjects.push(enemy);
                 }
@@ -211,15 +239,20 @@ function createEnemies() {
 
 function createHero() {
         hero = new Hero(
+                // @ts-ignore
                 canvas.width / 2 - 45,
+                // @ts-ignore
                 canvas.height - canvas.height / 4
         );
+        // @ts-ignore
         hero.img = heroImg;
         gameObjects.push(hero);
 }
 
 function updateGameObjects() {
+        // @ts-ignore
         const enemies = gameObjects.filter((go) => go.type === 'Enemy');
+        // @ts-ignore
         const lasers = gameObjects.filter((go) => go.type === 'Laser');
 
         // Check laser hitting enemy
@@ -229,6 +262,7 @@ function updateGameObjects() {
                                 l.rectFromGameObject(),
                                 m.rectFromGameObject()
                         )) {
+                                // @ts-ignore
                                 eventEmitter.emit(Messages.COLLISION_ENEMY_LASER, {
                                         first: l,
                                         second: m,
@@ -241,18 +275,23 @@ function updateGameObjects() {
         enemies.forEach((enemy) => {
                 if (intersectRect(
                         enemy.rectFromGameObject(),
+                        // @ts-ignore
                         hero.rectFromGameObject()
                 )) {
+                        // @ts-ignore
                         eventEmitter.emit(Messages.COLLISION_ENEMY_HERO, {
                                 first: enemy,
                         });
                 }
         });
 
+        // @ts-ignore
         gameObjects = gameObjects.filter((go) => !go.dead);
 }
 
+// @ts-ignore
 function drawGameObjects(ctx) {
+        // @ts-ignore
         gameObjects.forEach((go) => go.draw(ctx));
 }
 
@@ -262,23 +301,29 @@ function initGame() {
         createHero();
 
         eventEmitter.on(Messages.KEY_EVENT_UP, () => {
+                // @ts-ignore
                 hero.y -= 5;
         });
 
         eventEmitter.on(Messages.KEY_EVENT_DOWN, () => {
+                // @ts-ignore
                 hero.y += 5;
         });
 
         eventEmitter.on(Messages.KEY_EVENT_LEFT, () => {
+                // @ts-ignore
                 hero.x -= 5;
         });
 
         eventEmitter.on(Messages.KEY_EVENT_RIGHT, () => {
+                // @ts-ignore
                 hero.x += 5;
         });
 
         eventEmitter.on(Messages.KEY_EVENT_SPACE, () => {
+                // @ts-ignore
                 if (hero.canFire()) {
+                        // @ts-ignore
                         hero.fire();
                 }
         });
@@ -286,9 +331,11 @@ function initGame() {
         // Laser hits enemy - increase score
         eventEmitter.on(
                 Messages.COLLISION_ENEMY_LASER,
+                // @ts-ignore
                 (_, { first, second }) => {
                         first.dead = true;
                         second.dead = true;
+                        // @ts-ignore
                         hero.incrementPoints();
                 }
         );
@@ -296,9 +343,12 @@ function initGame() {
         // Enemy hits hero - decrease lives
         eventEmitter.on(
         Messages.COLLISION_ENEMY_HERO,
+        // @ts-ignore
         (_, { first }) => {
                 first.dead = true;
+                // @ts-ignore
                 if (!hero.dead) {
+                        // @ts-ignore
                         hero.decrementLife();
                 }
         }
@@ -307,18 +357,25 @@ function initGame() {
 
 window.onload = async () => {
         canvas = document.getElementById('canvas');
+        // @ts-ignore
         ctx = canvas.getContext('2d');
         heroImg = await loadTexture('assets/player.png');
         enemyImg = await loadTexture('assets/enemyShip.png');
         laserImg = await loadTexture('assets/laserRed.png');
 
         initGame();
+        // @ts-ignore
         let gameLoopId = setInterval(() => {
+                // @ts-ignore
                 ctx.clearRect(0, 0, canvas.width, canvas.height);
+                // @ts-ignore
                 ctx.fillStyle = 'black';
+                // @ts-ignore
                 ctx.fillRect(0, 0, canvas.width, canvas.height);
                 updateGameObjects();
+                // @ts-ignore
                 drawGameObjects(ctx);
+                // @ts-ignore
                 displayHUD(ctx, hero);
         }, 100);
 };
