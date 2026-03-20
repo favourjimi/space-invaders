@@ -1,18 +1,37 @@
-# Build a Space Game
+# Built a Space Game
 
 A space game to teach more advanced JavaScript fundamentals
 
+# Space Invaders – COMP.2800 Assignment #2
+
+A classic Space Invaders-style web game built using vanilla JavaScript 
+and HTML5 Canvas API. The player controls a spaceship and must destroy 
+waves of alien enemies descending from above before they reach the bottom 
+of the screen.
+
+## Built With
+- HTML5 Canvas API
+- Vanilla JavaScript (ES6+)
+- GitHub Codespaces (development environment)
+- Microsoft Azure (cloud hosting)
+
+## How to Play
+- Use Arrow Left / Arrow Right to move your spaceship
+- Press Spacebar to fire lasers
+- Destroy all enemies before they reach you!
+
+## Course Information
+- Course: COMP.2800 – Software Development
+- Professor: Dr. Andreas S. Maniatis
+- Term: Winter 2026
+- University of Windsor – School of Computer Science
+
+## Acknowledgements
+Based on Microsoft's Web Dev for Beginners tutorial:
+https://github.com/microsoft/Web-Dev-For-Beginners/tree/main/6-spacegame
 In this lesson you will learn how to build your own space game. If you've ever played the game "Space Invaders", this game has the same idea: to steer a spaceship and fire on monsters that come down from above. Here's what the finished game will look like:
 
 ![Finished game](images/pewpew.gif)
-
-In these six lessons you will learn the following:
-
-- **Interact** with the Canvas element to draw things on a screen
-- **Understand** the cartesian coordinate system
-- **Learn** the Pub-Sub pattern to create sound game architecture that's easier to maintain and extend
-- **Leverage** Async/Await to load game resources
-- **Handle** keyboard events
 
 ## Overview
 
