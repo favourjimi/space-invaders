@@ -2,7 +2,7 @@
 
 A space game to teach more advanced JavaScript fundamentals
 
-# Space Invaders – COMP.2800 Assignment #2
+# Space Invaders
 
 A classic Space Invaders-style web game built using vanilla JavaScript 
 and HTML5 Canvas API. The player controls a spaceship and must destroy 
